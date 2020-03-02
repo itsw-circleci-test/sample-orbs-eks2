@@ -25,9 +25,9 @@ workflows:
       #- aws-eks/create-cluster:
       #    context: AWS-CONTEXT
       #    cluster-name: eks-demo-deployment
-      #- create-deployment:
-      #    context: AWS-CONTEXT
-      #    cluster-name: eks-demo-deployment
+      - create-deployment:
+          context: AWS-CONTEXT
+          cluster-name: eks-demo-deployment
       #    #requires:
       #    #  - aws-eks/create-cluster
       - aws-eks/update-container-image:
@@ -41,8 +41,8 @@ workflows:
                 resource-types: deployment
                 wait: true
           record: true
-          #requires:
-          #  - create-deployment
+          requires:
+            - create-deployment
           resource-name: deployment/nginx-deployment
       #- aws-eks/delete-cluster:
       #    context: AWS-CONTEXT
