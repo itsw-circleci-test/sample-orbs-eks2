@@ -23,12 +23,15 @@ workflows:
   deployment:
     jobs:
       - aws-eks/create-cluster:
+          context: AWS-CONTEXT
           cluster-name: eks-demo-deployment
       - create-deployment:
+          context: AWS-CONTEXT
           cluster-name: eks-demo-deployment
           requires:
             - aws-eks/create-cluster
       - aws-eks/update-container-image:
+          context: AWS-CONTEXT
           cluster-name: eks-demo-deployment
           container-image-updates: 'nginx=nginx:1.9.1'
           post-steps:
@@ -41,6 +44,7 @@ workflows:
             - create-deployment
           resource-name: deployment/nginx-deployment
       #- aws-eks/delete-cluster:
+      #    context: AWS-CONTEXT
       #    cluster-name: eks-demo-deployment
       #    requires:
       #      - aws-eks/update-container-image
