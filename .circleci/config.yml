@@ -22,14 +22,14 @@ version: 2.1
 workflows:
   deployment:
     jobs:
-      #- aws-eks/create-cluster:
-      #    context: AWS-CONTEXT
-      #    cluster-name: eks-demo-deployment
+      - aws-eks/create-cluster:
+          context: AWS-CONTEXT
+          cluster-name: eks-demo-deployment
       - create-deployment:
           context: AWS-CONTEXT
           cluster-name: eks-demo-deployment
-      #    #requires:
-      #    #  - aws-eks/create-cluster
+          requires:
+            - aws-eks/create-cluster
       - aws-eks/update-container-image:
           context: AWS-CONTEXT
           cluster-name: eks-demo-deployment
