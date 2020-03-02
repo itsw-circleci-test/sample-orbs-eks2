@@ -24,15 +24,15 @@ workflows:
     jobs:
       - aws-eks/create-cluster:
           context: AWS-CONTEXT
-          cluster-name: eks-demo-deployment
+          cluster-name: eks-demo-deployment2
       - create-deployment:
           context: AWS-CONTEXT
-          cluster-name: eks-demo-deployment
+          cluster-name: eks-demo-deployment2
           requires:
             - aws-eks/create-cluster
       - aws-eks/update-container-image:
           context: AWS-CONTEXT
-          cluster-name: eks-demo-deployment
+          cluster-name: eks-demo-deployment2
           #container-image-updates: 'nginx=894218304272.dkr.ecr.ap-northeast-1.amazonaws.com/circleci-test/sample-orbs:latest'
           container-image-updates: 'nginx=nginx:1.9.1'
           post-steps:
@@ -46,6 +46,6 @@ workflows:
           resource-name: deployment/nginx-deployment
       - aws-eks/delete-cluster:
           context: AWS-CONTEXT
-          cluster-name: eks-demo-deployment
+          cluster-name: eks-demo-deployment2
           requires:
             - aws-eks/update-container-image
