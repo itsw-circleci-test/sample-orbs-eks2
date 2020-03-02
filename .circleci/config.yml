@@ -40,7 +40,7 @@ workflows:
           requires:
             - create-deployment
           resource-name: deployment/nginx-deployment
-      - aws-eks/delete-cluster:
-          cluster-name: eks-demo-deployment
-          requires:
-            - aws-eks/update-container-image
+      #- aws-eks/delete-cluster:
+      #    cluster-name: eks-demo-deployment
+      #    requires:
+      #      - aws-eks/update-container-image
