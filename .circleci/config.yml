@@ -35,11 +35,11 @@ workflows:
           cluster-name: eks-demo-deployment
           #container-image-updates: 'nginx=894218304272.dkr.ecr.ap-northeast-1.amazonaws.com/circleci-test/sample-orbs:latest'
           container-image-updates: 'nginx=nginx:1.9.1'
-          #post-steps:
-          #  - kubernetes/delete-resource:
-          #      resource-names: nginx-deployment
-          #      resource-types: deployment
-          #      wait: true
+          post-steps:
+            - kubernetes/delete-resource:
+                resource-names: nginx-deployment
+                resource-types: deployment
+                wait: true
           record: true
           requires:
             - create-deployment
